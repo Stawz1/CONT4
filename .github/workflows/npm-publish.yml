@@ -10,6 +10,16 @@ on:
     branches: [ main ]
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+      - run: npm ci
+      - run: npm test
+
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -22,4 +32,4 @@ jobs:
       - run: npm ci
       - run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: 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
